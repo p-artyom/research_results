@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DOTENV_PATH = BASE_DIR / 'research_results' / '.env'
+DOTENV_PATH = BASE_DIR.parent / '.env'
 
 if os.path.exists(DOTENV_PATH):
     load_dotenv(DOTENV_PATH)
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'researches.apps.ResearchesConfig',
 
+    'drf_spectacular',
     'rest_framework',
     'django_filters',
     'djoser',
@@ -68,21 +69,14 @@ WSGI_APPLICATION = 'research_results.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('POSTGRES_DB', 'django_db'),
+        'USER': os.getenv('POSTGRES_USER', 'django_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'django_password'),
+        'HOST': os.getenv('DB_NAME', 'localhost'),
+        'PORT': os.getenv('DB_PORT', 5432),
     },
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('POSTGRES_DB', 'django_db'),
-#         'USER': os.getenv('POSTGRES_USER', 'django_user'),
-#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'django_password'),
-#         'HOST': os.getenv('DB_NAME', 'localhost'),
-#         'PORT': os.getenv('DB_PORT', 5432),
-#     },
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -120,11 +114,20 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Список эндпоинтов API',
+    'DESCRIPTION': 'Документация API',
+    'VERSION': '0.0.1',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
 }
 
 STR_LENGTH_WHEN_PRINTING_MODEL = 79

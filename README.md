@@ -7,9 +7,9 @@
 ## Технологии
 
 - Python 3.11.5;
-- PostgreSQL 14;
 - Django 4.2;
-- Django REST framework 3.14.
+- Django REST framework 3.14;
+- PostgreSQL 14.
 
 ## Запуск проекта
 
@@ -23,13 +23,13 @@
 
 - [x] Тесты;
 
-- [ ] Docker compose;
+- [x] Docker compose;
 
-- [ ] База данных - PostgreSQL 14;
+- [x] База данных - PostgreSQL 14;
 
-- [ ] Документация API;
+- [x] Документация API;
 
-- [ ] CI;
+- [x] CI;
 
 - [ ] Описание и инструкция по запуску проекта.
 
