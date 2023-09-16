@@ -298,7 +298,8 @@ class Migration(migrations.Migration):
         migrations.AddConstraint(
             model_name="score",
             constraint=models.UniqueConstraint(
-                fields=("test", "indicator_metric"), name="unique_score",
+                fields=("test", "indicator_metric"),
+                name="unique_score",
             ),
         ),
     ]

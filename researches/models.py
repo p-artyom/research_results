@@ -37,6 +37,7 @@ class Test(TimestampedModel):
     class Meta:
         verbose_name = 'исследование'
         verbose_name_plural = 'исследования'
+        ordering = ('-created',)
 
     def __str__(self) -> str:
         return cut_string(

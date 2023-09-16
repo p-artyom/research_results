@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'researches.apps.ResearchesConfig',
 
     'rest_framework',
+    'django_filters',
     'djoser',
 ]
 # fmt: on
@@ -127,3 +128,7 @@ SIMPLE_JWT = {
 }
 
 STR_LENGTH_WHEN_PRINTING_MODEL = 79
+
+NUM_OBJECTS_ON_PAGE = 20
+
+NUM_OBJECTS_ON_LAST_PAGE_FOR_TEST = 2

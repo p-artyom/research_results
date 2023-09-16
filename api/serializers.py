@@ -34,7 +34,7 @@ class ScoresSerializer(serializers.ModelSerializer):
 
 
 class TestsSerializer(serializers.ModelSerializer):
-    lab_id = serializers.CharField(source='lab.id')
+    lab_id = serializers.IntegerField(source='lab.id')
     duration_seconds = serializers.SerializerMethodField()
     results = ScoresSerializer(
         many=True,
